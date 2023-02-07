@@ -21,64 +21,66 @@ This partial renders a checkbox for each facet value along with any applicable a
 
 *Note: For more information, see [CheckboxListFacetValue](../interfaces/Models.CheckboxListFacetValue.md).*
 
+{% raw %}
 ```
-\{\{#if length\}\}
+{{#if length}}
     <ul class="checkbox-list-facet__list">
-        \{\{#each this\}\}
-            \{\{#if visible\}\}
+        {{#each this}}
+            {{#if visible}}
                 <li
-                    class="checkbox-list-facet__list__item\{\{attribute ' checkbox-list-facet__list__item--excluded' excluded\}\}\{\{attribute
+                    class="checkbox-list-facet__list__item{{attribute ' checkbox-list-facet__list__item--excluded' excluded}}{{attribute
                             ' checkbox-list-facet__list__item--collapsible'
                             hasChildren
-                        \}\}"
+                        }}"
                 >
                     <div class="checkbox-list-facet__list__item__content">
-                        \{\{#if selected\}\}
-                            <input id="\{\{@root.id\}\}-\{\{value\}\}" type="checkbox" checked hawksearch-facet-value value="\{\{value\}\}" />
-                        \{\{else\}\}
-                            <input id="\{\{@root.id\}\}-\{\{value\}\}" type="checkbox" hawksearch-facet-value value="\{\{value\}\}" />
-                        \{\{/if\}\}
-                        <label for="\{\{@root.id\}\}-\{\{value\}\}" class="facet__value">
-                            <span class="facet__value__title checkbox-list-facet__list__item__title">\{\{title\}\}</span>
-                            \{\{#if @root.displayCount\}\}
-                                <span class="facet__value__count checkbox-list-facet__list__item__count">(\{\{count\}\})</span>
-                            \{\{/if\}\}
+                        {{#if selected}}
+                            <input id="{{@root.id}}-{{value}}" type="checkbox" checked hawksearch-facet-value value="{{value}}" />
+                        {{else}}
+                            <input id="{{@root.id}}-{{value}}" type="checkbox" hawksearch-facet-value value="{{value}}" />
+                        {{/if}}
+                        <label for="{{@root.id}}-{{value}}" class="facet__value">
+                            <span class="facet__value__title checkbox-list-facet__list__item__title">{{title}}</span>
+                            {{#if @root.displayCount}}
+                                <span class="facet__value__count checkbox-list-facet__list__item__count">({{count}})</span>
+                            {{/if}}
                         </label>
-                        \{\{#if toggled\}\}
-                            \{\{> facet-checkbox-list children\}\}
-                        \{\{/if\}\}
+                        {{#if toggled}}
+                            {{> facet-checkbox-list children}}
+                        {{/if}}
                     </div>
                     <div class="checkbox-list-facet__list__item__actions">
-                        \{\{#if excluded\}\}
-                            <span hawksearch-facet-value-include="\{\{value\}\}" class="checkbox-list-facet__list__item__actions__item" title="\{\{@root.strings.include\}\}">
+                        {{#if excluded}}
+                            <span hawksearch-facet-value-include="{{value}}" class="checkbox-list-facet__list__item__actions__item" title="{{@root.strings.include}}">
                                 <hawksearch-icon name="plus" class="facet__heading__actions__item"></hawksearch-icon>
                             </span>
-                        \{\{else\}\}
-                            <span hawksearch-facet-value-exclude="\{\{value\}\}" class="checkbox-list-facet__list__item__actions__item" title="\{\{@root.strings.exclude\}\}">
+                        {{else}}
+                            <span hawksearch-facet-value-exclude="{{value}}" class="checkbox-list-facet__list__item__actions__item" title="{{@root.strings.exclude}}">
                                 <hawksearch-icon name="minus" class="facet__heading__actions__item"></hawksearch-icon>
                             </span>
-                        \{\{/if\}\}
-                        \{\{#if hasChildren\}\}
-                            <span hawksearch-facet-value-toggle="\{\{value\}\}" class="checkbox-list-facet__list__item__actions__item" title="\{\{if-else toggled @root.strings.collapse @root.strings.expand\}\}">
-                                <hawksearch-icon name="\{\{if-else toggled 'chevron-down' 'chevron-right'\}\}" class="facet__heading__toggle"></hawksearch-icon>
+                        {{/if}}
+                        {{#if hasChildren}}
+                            <span hawksearch-facet-value-toggle="{{value}}" class="checkbox-list-facet__list__item__actions__item" title="{{if-else toggled @root.strings.collapse @root.strings.expand}}">
+                                <hawksearch-icon name="{{if-else toggled 'chevron-down' 'chevron-right'}}" class="facet__heading__toggle"></hawksearch-icon>
                             </span>
-                        \{\{/if\}\}
+                        {{/if}}
                     </div>
                 </li>
-            \{\{/if\}\}
-        \{\{/each\}\}
+            {{/if}}
+        {{/each}}
     </ul>
-\{\{/if\}\}
+{{/if}}
 ```
+{% endraw %}
 
 ## Default Template
 The following is the default Handlebars template for this component. To create a custom template, it is recommended to use this as a starting point.
 ```
-<div class="checkbox-list-facet" \{\{attribute (concat 'style="max-height: ' maxHeight 'px;"') maxHeight\}\}>
-    \{\{> facet-checkbox-list values\}\}
-    \{\{#if showToggle\}\}
-        <span hawksearch-facet-toggle class="link facet__toggle">\{\{strings.toggle\}\}</span>
-    \{\{/if\}\}
+<div class="checkbox-list-facet" {{attribute (concat 'style="max-height: ' maxHeight 'px;"') maxHeight}}>
+    {{> facet-checkbox-list values}}
+    {{#if showToggle}}
+        <span hawksearch-facet-toggle class="link facet__toggle">{{strings.toggle}}</span>
+    {{/if}}
 </div>
 ```
 
