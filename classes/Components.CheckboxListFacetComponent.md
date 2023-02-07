@@ -21,7 +21,7 @@ This partial renders a checkbox for each facet value along with any applicable a
 
 *Note: For more information, see [CheckboxListFacetValue](../interfaces/Models.CheckboxListFacetValue.md).*
 
-```
+```html
 {{#if length}}
     <ul class="checkbox-list-facet__list">
         {{#each this}}
